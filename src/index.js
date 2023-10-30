@@ -22,13 +22,16 @@ app.use(
         ],
     })
 );
-// const branchRouter = require("./routers/branchRouter");
-// app.use("/branchs", branchRouter);
-const router = require('./routes/attendanceRouter');
-app.use("/attendance", router)
 
-const tweetRouter = require('./routes/eventRouter');
-app.use("/tweet", tweetRouter);
+const eventRouter = require('./routes/eventRouter');
+app.use("/event", eventRouter);
+
+const attendanceRouter = require('./routes/attendanceRouter');
+app.use("/attendance", attendanceRouter);
+
+const transactionRouter = require('./routes/transactionRouter');
+app.use("/transaction", transactionRouter);
+
 
 app.listen(PORT, (req, res) => {
     console.log(`server started on port ${PORT}`);

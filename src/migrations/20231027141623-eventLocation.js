@@ -4,7 +4,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable("eventLocation", {
-      locationId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

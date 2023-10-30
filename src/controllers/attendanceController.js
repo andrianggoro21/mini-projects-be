@@ -1,10 +1,10 @@
 const { createAttendanceService } = require("../services/attendanceService");
 
-const createAttendanceController = async () => {
+const createAttendanceController = async (req, res) => {
     try {
-        const {fullName} = req.body
-        const result = await createAttendanceService(fullName)
-        return result.status(200).json({
+        const { ticketId, fullName, email, phoneNumber, referralCode, isCancel } = req.body
+        const result = await createAttendanceService(ticketId, fullName, email, phoneNumber, referralCode, isCancel)
+        return res.status(200).json({
             message: "Success",
             data: result
         })
@@ -13,4 +13,6 @@ const createAttendanceController = async () => {
     }
 }
 
-module.exports = createAttendanceController
+module.exports = {
+    createAttendanceController
+} 

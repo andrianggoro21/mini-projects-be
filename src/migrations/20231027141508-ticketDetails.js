@@ -4,7 +4,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable("ticketDetails", {
-      detailId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

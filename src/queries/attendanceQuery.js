@@ -1,16 +1,30 @@
 const db = require("../models");
-const { Op } = require("sequelize");
+// const { Op } = require("sequelize");
 const attendance = db.attendance;
 
-const createAttendanceQuery = async (fullName) => {
-    try {
-        const res = await attendance.create({fullName})
-        return res
-    } catch (err) {
-        throw err
-    }
-}
+const createAttendanceQuery = async (
+  ticketId,
+  fullName,
+  email,
+  phoneNumber,
+  referralCode,
+  isCancel
+) => {
+  try {
+    const res = await attendance.create({
+      ticketId,
+      fullName,
+      email,
+      phoneNumber,
+      referralCode,
+      isCancel,
+    });
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
 
 module.exports = {
-    createAttendanceQuery,
-}
+  createAttendanceQuery,
+};
