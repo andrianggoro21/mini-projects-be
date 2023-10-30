@@ -27,8 +27,9 @@ app.use(
 const router = require('./routes/attendanceRouter');
 app.use("/attendance", router)
 
-const tweetRouter = require('./routes/eventRouter');
-app.use("/tweet", tweetRouter);
+const userRouter = require('./routes/authRouter');
+app.use("/user", userRouter);
+
 
 app.listen(PORT, (req, res) => {
     console.log(`server started on port ${PORT}`);
