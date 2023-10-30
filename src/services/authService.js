@@ -1,19 +1,21 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { registerQuery, keepLoginQuery } = require("../queries/authQuery");
+const { keepLoginQuery, registerQuery } = require("../queries/authQuery");
 const { findUserQuery } = require("../queries/userQuery");
 
-const registerService = async ( email, password, fullname ) => {
+const registerService = async (fullname, email, password) => {
+    console.log(fullname);
     try {
-        const check  = await findUserQuery(email, password, fullname);
+        const check  = await findUserQuery({fullname, email});
+        console.log(check);
 
-        if (!check) throw new Error("Email or fullname already exist");
+        if (check) throw new Error("Email or fullname already exist");
 
         const salt = await bcrypt.genSalt(10);
 
         const hashPassword = await bcrypt.hash(password, salt);
 
-        const res = await registerQuery(email, hashPassword, fullname);
+        const res = await registerQuery(fullname, email, hashPassword);
 
         return res;
     } catch (err) {
