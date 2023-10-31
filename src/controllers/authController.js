@@ -3,9 +3,8 @@ const { registerService, loginService, keepLoginService,
 
 const registerController = async (req, res) => {
     try {
-        const { fullname, email, password } = req.body;
-        console.log(fullname);
-        const result = await registerService(fullname, email, password);
+        const { fullname, email, password, roleId } = req.body;
+        const result = await registerService(fullname, email, password, roleId);
         return res.status(200).json({
             message: "Successfully",
             data: result,

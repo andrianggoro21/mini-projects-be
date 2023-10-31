@@ -2,12 +2,13 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { keepLoginQuery, registerQuery } = require("../queries/authQuery");
 const { findUserQuery } = require("../queries/userQuery");
+const { transporter } = require("../utils/nodemailer");
+const { template } = require("handlebars");
 
-const registerService = async (fullname, email, password) => {
-    console.log(fullname);
+
+const registerService = async (fullname, email, password, roleId) => {
     try {
         const check  = await findUserQuery({fullname, email});
-        console.log(check);
 
         if (check) throw new Error("Email or fullname already exist");
 
@@ -15,7 +16,24 @@ const registerService = async (fullname, email, password) => {
 
         const hashPassword = await bcrypt.hash(password, salt);
 
-        const res = await registerQuery(fullname, email, hashPassword);
+        const res = await registerQuery(fullname, email, hashPassword, roleId);
+
+        // const temp = await FileSystem.readFileSync(
+        //     path.join(__dirname, "../template", "registration-template.html"),
+        //     "utf-8",
+        // );
+
+        // const tempCompile = await handlebars.compile(temp);
+        // const tempResult = tempCompile({ email: res.email });
+
+        
+        // await transporter.sendMail({
+        //     from: process.env.GMAIL_USER,
+        //     to: res.email,
+        //     subject: "Activation",
+        //     html: "<h1>Welcome to purwadhika</h1>"
+        // });
+        
 
         return res;
     } catch (err) {

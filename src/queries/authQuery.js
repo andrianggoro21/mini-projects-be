@@ -9,10 +9,10 @@ const registerQuery = async (fullname, email, password) => {
                 fullname,
                 email,
                 password,
-                roleId : 1,
+                roleId,
             },
         );
-        console.log(res);
+        // console.log(res);
         return res;
     } catch (err) {
         throw err;
