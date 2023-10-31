@@ -24,7 +24,7 @@ const loginController = async (req, res) => {
             data: result,
         });
     } catch (err) {
-        return res.status(500).send("err.message");
+        return res.status(500).send("data yang dimasukkan salah");
     }
 };
 
