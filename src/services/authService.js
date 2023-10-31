@@ -41,7 +41,7 @@ const registerService = async (fullname, email, password, roleId) => {
     }
 };
 
-const loginService = async ( email, password ) => {
+const loginService = async (email, password) => {
     try {
       const check = await findUserQuery({ email });
       if (!check) throw new Error("Email doesnt exist");
@@ -51,8 +51,8 @@ const loginService = async ( email, password ) => {
 
       let payload = {
         id: check.id,
-        email: check.email,
         fullname: check.fullname,
+        email: check.email,
         roleId: check.roleId,
       };
 

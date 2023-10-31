@@ -2,7 +2,7 @@ const db = require("../models");
 const { Op } = require("sequelize");
 const user = db.user;
 
-const registerQuery = async (fullname, email, password) => {
+const registerQuery = async (fullname, email, password, roleId) => {
     try {
         const res = await user.create(
             {
