@@ -15,12 +15,13 @@ const app = new express();
 
 app.use(bodyParser.json());
 app.use(
-    cors({
-        origin: [
-            process.env.WHITELISTED_DOMAIN && 
-                process.env.WHITELISTED_DOMAIN.split(" "),
-        ],
-    })
+    cors()
+        // {
+    //     origin: [
+    //         process.env.WHITELISTED_DOMAIN && 
+    //             process.env.WHITELISTED_DOMAIN.split(" "),
+    //     ],
+    // })
 );
 
 const eventRouter = require('./routes/eventRouter');
@@ -32,6 +33,8 @@ app.use("/attendance", attendanceRouter);
 const transactionRouter = require('./routes/transactionRouter');
 app.use("/transaction", transactionRouter);
 
+const ticketRouter = require('./routes/ticketRouter');
+app.use("/ticket", ticketRouter);
 
 app.listen(PORT, (req, res) => {
     console.log(`server started on port ${PORT}`);
