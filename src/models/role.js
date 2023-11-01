@@ -12,9 +12,9 @@ module.exports = (sequelize, Sequelize) => {
         }
     );
 
-    // role.associate = (models) => {
-    //     role.hasMany(models.user, { foreignKey: "roleId"});
-    // };
+    role.associate = (models) => {
+        role.hasMany(models.user, { foreignKey: "roleId"});
+    };
 
     return role;
 }
