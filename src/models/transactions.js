@@ -12,10 +12,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.DECIMAL,
       },
       transactionStatus: {
-        type: Sequelize.STRING,
-      },
-      referralCode: {
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
       },
     },
     {
@@ -25,7 +22,7 @@ module.exports = (sequelize, Sequelize) => {
   );
 
   transaction.associate = (models) => {
-    transaction.hasOne(models.attendance, { foreignKey: "attendanceId" });
+    transaction.belongsTo(models.attendance, { foreignKey: "attendanceId" });
   };
 
   return transaction;

@@ -6,15 +6,13 @@ const createTransactionController = async (req, res) => {
       attendanceId,
       ticketTotal,
       priceTotal,
-      transactionStatus,
-      referralCode,
+      transactionStatus
     } = req.body;
     const result = await createTransactionService(
       attendanceId,
       ticketTotal,
       priceTotal,
-      transactionStatus,
-      referralCode
+      transactionStatus
     );
     return res.status(200).json({
       message: "Success",

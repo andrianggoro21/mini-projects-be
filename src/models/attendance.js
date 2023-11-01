@@ -5,6 +5,9 @@ module.exports = (sequelize, Sequelize) => {
         ticketId: {
           type: Sequelize.INTEGER,
         },
+        userId: {
+          type: Sequelize.INTEGER,
+        },
         fullName: {
           type: Sequelize.STRING,
         },
@@ -12,7 +15,7 @@ module.exports = (sequelize, Sequelize) => {
           type: Sequelize.STRING,
         },
         phoneNumber: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING,
         },
         referralCode: {
           type: Sequelize.STRING,
@@ -28,7 +31,7 @@ module.exports = (sequelize, Sequelize) => {
     );
   
     attendance.associate = (models) => {
-      attendance.belongsTo(models.transaction, { foreignKey: "attendanceId" });
+      attendance.hasOne(models.transaction, { foreignKey: "attendanceId" });
     };
   
     return attendance;

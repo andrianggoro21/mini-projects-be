@@ -4,6 +4,7 @@ const attendance = db.attendance;
 
 const createAttendanceQuery = async (
   ticketId,
+  userId,
   fullName,
   email,
   phoneNumber,
@@ -13,6 +14,7 @@ const createAttendanceQuery = async (
   try {
     const res = await attendance.create({
       ticketId,
+      userId,
       fullName,
       email,
       phoneNumber,
@@ -25,6 +27,16 @@ const createAttendanceQuery = async (
   }
 };
 
+const getAttendanceQueryAll = async () => {
+  try {
+    const res = await attendance.findAll({include: db.transaction})
+    return res
+  } catch (err) {
+    throw err
+  }
+}
+
 module.exports = {
   createAttendanceQuery,
+  getAttendanceQueryAll
 };

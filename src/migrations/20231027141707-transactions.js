@@ -20,10 +20,7 @@ module.exports = {
         type: Sequelize.DECIMAL,
       },
       transactionStatus: {
-        type: Sequelize.STRING,
-      },
-      referralCode: {
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
       },
     });
   },

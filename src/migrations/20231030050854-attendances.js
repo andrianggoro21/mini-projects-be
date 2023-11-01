@@ -13,6 +13,9 @@ module.exports = {
       ticketId: {
         type: Sequelize.INTEGER,
       },
+      userId: {
+        type: Sequelize.INTEGER,
+      },
       fullName: {
         type: Sequelize.STRING,
       },
@@ -20,7 +23,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       phoneNumber: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       referralCode: {
         type: Sequelize.STRING,
