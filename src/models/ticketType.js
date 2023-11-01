@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
     );
 
     ticketType.associate = (models) => {
-        ticketType.hasOne(models.tickets, {foreignKey: "typeId"});
+        ticketType.hasOne(models.tickets, {foreignKey: "ticketTypeId"});
     };
 
     return ticketType;

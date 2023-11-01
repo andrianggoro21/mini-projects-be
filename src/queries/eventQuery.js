@@ -75,7 +75,7 @@ const getEventQuery = async () => {
       //     }
       // ]
 
-      include: [db.eventlocation, db.eventcategory],
+      include: [db.eventlocation, db.eventcategory, db.tickets],
       // ...filter,
     });
 

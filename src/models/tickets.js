@@ -1,18 +1,24 @@
 module.exports = (sequelize, Sequelize) => {
-    const tickets = sequelize.define(
+    const ticket = sequelize.define(
         "tickets", 
         {
-          detilId: {
+          eventId: {
             type: Sequelize.INTEGER,
             allowNull: false,
           },
-          typeId: {
+          ticketTypeId: {
             type: Sequelize.INTEGER,
             allowNull: false,
           },
-          userId: {
+          ticketName: {
             type: Sequelize.INTEGER,
             allowNull: false,
+          },
+          price: {
+            type: Sequelize.DECIMAL,
+          },
+          capacity: {
+            type: Sequelize.INTEGER,
           },
           discount: {
             type: Sequelize.DECIMAL,
@@ -27,9 +33,10 @@ module.exports = (sequelize, Sequelize) => {
         }
     );
 
-    tickets.associate = (models) => {
-        tickets.belongsTo(models.tickettypes, {foreignKey: "typeId"});
+    ticket.associate = (models) => {
+        ticket.belongsTo(models.events, {foreignKey: "eventId"});
+        ticket.belongsTo(models.tickettypes, {foreignKey: "ticketTypeId"});
     };
 
-    return tickets;
+    return ticket;
 }

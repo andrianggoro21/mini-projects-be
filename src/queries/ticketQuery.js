@@ -13,21 +13,23 @@ const getTicketTypeQuery = async () => {
 }
 
 const createTicketQuery = async (
-  detailId,
   eventId,
-  typeId,
-  userId,
+  ticketTypeId,
+  ticketName,
+  price,
+  capacity,
   discount,
   maxReferral
 ) => {
   try {
     const res = await ticket.create({
-      detailId,
       eventId,
-      typeId,
-      userId,
+      ticketTypeId,
+      ticketName,
+      price,
+      capacity,
       discount,
-      maxReferral,
+      maxReferral
     });
 
     return res;
@@ -36,7 +38,23 @@ const createTicketQuery = async (
   }
 };
 
+const getTicketQuery = async () => {
+  try {
+    const res = await ticket.findAll({
+      include: [  
+      //   db.event,
+        db.tickettypes,
+      ]
+  });
+    console.log(res);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+} 
+
 module.exports = {
   getTicketTypeQuery,
   createTicketQuery,
+  getTicketQuery,
 };
