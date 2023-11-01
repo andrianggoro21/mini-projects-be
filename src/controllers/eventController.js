@@ -1,4 +1,9 @@
-const { createEventService } = require("../services/eventService");
+const {
+  createEventService,
+  getCategoryService,
+  getLocationService,
+  getEventService,
+} = require("../services/eventService");
 
 const createEventController = async (req, res) => {
   try {
@@ -38,4 +43,45 @@ const createEventController = async (req, res) => {
   }
 };
 
-module.exports = { createEventController };
+const getCategoryController = async (req, res) => {
+  try {
+    const result = await getCategoryService();
+    return res.status(200).json({
+      message: "success",
+      data: result,
+    });
+  } catch (err) {
+    throw err;
+  }
+};
+
+const getLocationController = async (req, res) => {
+  try {
+    const result = await getLocationService();
+    return res.status(200).json({
+      message: "success",
+      data: result,
+    });
+  } catch (err) {
+    throw err;
+  }
+};
+
+const getEventController = async (req, res) => {
+  try {
+    const result = await getEventService();
+    return res.status(200).json({
+      message: "success",
+      data: result,
+    });
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports = {
+  createEventController,
+  getCategoryController,
+  getLocationController,
+  getEventController,
+};

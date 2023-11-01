@@ -1,18 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-// const {
-//   registerController,
-//   loginController,
-//   keepLoginController,
-// } = require("../controllers/authController");
-
-// const { verifyToken } = require("../middleware/auth");
-
-// router.post("/login", loginController);
-// router.post("/register", registerController);
-// router.get("/keep-login", verifyToken, keepLoginController);
-const { createEventController } = require("../controllers/eventController");
-router.post("/", createEventController)
+const { createEventController, getCategoryController, getLocationController, getEventController } = require("../controllers/eventController");
+router.post("/add-event", createEventController);
+router.get("/list-category", getCategoryController);
+router.get("/list-location", getLocationController);
+router.get("/list-event", getEventController);
 
 module.exports = router;
