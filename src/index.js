@@ -36,6 +36,8 @@ app.use("/transaction", transactionRouter);
 
 const ticketRouter = require('./routes/ticketRouter');
 app.use("/ticket", ticketRouter);
+const userRouter = require('./routes/authRouter');
+app.use("/user", userRouter);
 
 
 app.listen(PORT, (req, res) => {
