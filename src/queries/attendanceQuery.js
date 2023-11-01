@@ -9,7 +9,8 @@ const createAttendanceQuery = async (
   email,
   phoneNumber,
   referralCode,
-  isCancel
+  ticketTotal,
+  priceTotal
 ) => {
   try {
     const res = await attendance.create({
@@ -19,7 +20,8 @@ const createAttendanceQuery = async (
       email,
       phoneNumber,
       referralCode,
-      isCancel,
+      ticketTotal,
+      priceTotal
     });
     return res;
   } catch (err) {
@@ -29,14 +31,14 @@ const createAttendanceQuery = async (
 
 const getAttendanceQueryAll = async () => {
   try {
-    const res = await attendance.findAll({include: db.transaction})
-    return res
+    const res = await attendance.findAll({ include: db.transaction });
+    return res;
   } catch (err) {
-    throw err
+    throw err;
   }
-}
+};
 
 module.exports = {
   createAttendanceQuery,
-  getAttendanceQueryAll
+  getAttendanceQueryAll,
 };

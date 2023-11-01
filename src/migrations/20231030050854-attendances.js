@@ -28,8 +28,11 @@ module.exports = {
       referralCode: {
         type: Sequelize.STRING,
       },
-      isCancel: {
-        type: Sequelize.BOOLEAN,
+      ticketTotal: {
+        type: Sequelize.INTEGER,
+      },
+      priceTotal: {
+        type: Sequelize.DECIMAL,
       },
     });
   },

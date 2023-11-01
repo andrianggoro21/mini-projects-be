@@ -10,7 +10,8 @@ const createAttendanceService = async (
   email,
   phoneNumber,
   referralCode,
-  isCancel
+  ticketTotal,
+  priceTotal
 ) => {
   try {
     const res = await createAttendanceQuery(
@@ -20,7 +21,8 @@ const createAttendanceService = async (
       email,
       phoneNumber,
       referralCode,
-      isCancel
+      ticketTotal,
+      priceTotal
     );
     return res;
   } catch (err) {

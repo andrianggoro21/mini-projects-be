@@ -4,15 +4,11 @@ const createTransactionController = async (req, res) => {
   try {
     const {
       attendanceId,
-      ticketTotal,
-      priceTotal,
-      transactionStatus
+      transactionStatusId
     } = req.body;
     const result = await createTransactionService(
       attendanceId,
-      ticketTotal,
-      priceTotal,
-      transactionStatus
+      transactionStatusId
     );
     return res.status(200).json({
       message: "Success",

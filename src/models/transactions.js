@@ -5,14 +5,8 @@ module.exports = (sequelize, Sequelize) => {
       attendanceId: {
         type: Sequelize.INTEGER,
       },
-      ticketTotal: {
+      transactionStatusId: {
         type: Sequelize.INTEGER,
-      },
-      priceTotal: {
-        type: Sequelize.DECIMAL,
-      },
-      transactionStatus: {
-        type: Sequelize.BOOLEAN,
       },
     },
     {

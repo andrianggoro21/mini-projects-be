@@ -5,8 +5,16 @@ const {
 
 const createAttendanceController = async (req, res) => {
   try {
-    const { ticketId, userId, fullName, email, phoneNumber, referralCode, isCancel } =
-      req.body;
+    const {
+      ticketId,
+      userId,
+      fullName,
+      email,
+      phoneNumber,
+      referralCode,
+      ticketTotal,
+      priceTotal
+    } = req.body;
     const result = await createAttendanceService(
       ticketId,
       userId,
@@ -14,7 +22,8 @@ const createAttendanceController = async (req, res) => {
       email,
       phoneNumber,
       referralCode,
-      isCancel
+      ticketTotal,
+      priceTotal
     );
     return res.status(200).json({
       message: "Success",
@@ -39,5 +48,5 @@ const getAttendanceControllerAll = async (req, res) => {
 
 module.exports = {
   createAttendanceController,
-  getAttendanceControllerAll
+  getAttendanceControllerAll,
 };

@@ -2,16 +2,12 @@ const { createTransactionQuery } = require("../queries/transactionQuery");
 
 const createTransactionService = async (
   attendanceId,
-  ticketTotal,
-  priceTotal,
-  transactionStatus,
+  transactionStatusId
 ) => {
   try {
     const res = await createTransactionQuery(
       attendanceId,
-      ticketTotal,
-      priceTotal,
-      transactionStatus,
+      transactionStatusId
     );
     return res;
   } catch (err) {
