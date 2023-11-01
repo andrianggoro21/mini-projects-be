@@ -1,4 +1,4 @@
-const { createTicketQuery, getTicketTypeQuery } = require("../queries/ticketQuery");
+const { createTicketQuery, getTicketTypeQuery, getTicketQuery } = require("../queries/ticketQuery");
 
 const getTicketTypeService = async () => {
     try {
@@ -10,19 +10,21 @@ const getTicketTypeService = async () => {
 }
 
 const createTicketService = async (
-  detailId,
   eventId,
-  typeId,
-  userId,
+  ticketTypeId,
+  ticketName,
+  price,
+  capacity,
   discount,
   maxReferral
 ) => {
   try {
     const res = await createTicketQuery(
-      detailId,
       eventId,
-      typeId,
-      userId,
+      ticketTypeId,
+      ticketName,
+      price,
+      capacity,
       discount,
       maxReferral
     );
@@ -32,7 +34,17 @@ const createTicketService = async (
   }
 };
 
+const getTicketService = async () => {
+  try {
+    const res = await getTicketQuery();
+    return res;
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
     getTicketTypeService,
   createTicketService,
+  getTicketService,
 };

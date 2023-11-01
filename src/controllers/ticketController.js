@@ -1,28 +1,38 @@
 const {
-  createTicketService, getTicketTypeService,
+  createTicketService,
+  getTicketTypeService,
+  getTicketService,
 } = require("../services/ticketService");
 
 const getTicketTypeController = async (req, res) => {
-    try {
-        const result = await getTicketTypeService();
-        return res.status(200).json({
-            message: "success",
-            data: result,
-        });
-    } catch (err) {
-        throw err;
-    }
-}
+  try {
+    const result = await getTicketTypeService();
+    return res.status(200).json({
+      message: "success",
+      data: result,
+    });
+  } catch (err) {
+    throw err;
+  }
+};
 
 const createTicketController = async (req, res) => {
   try {
-    const { detailId, eventId, typeId, userId, discount, maxReferral } =
-      req.body;
-    const result = await createTicketService(
-      detailId,
+    const {
       eventId,
-      typeId,
-      userId,
+      ticketTypeId,
+      ticketName,
+      price,
+      capacity,
+      discount,
+      maxReferral,
+    } = req.body;
+    const result = await createTicketService(
+      eventId,
+      ticketTypeId,
+      ticketName,
+      price,
+      capacity,
       discount,
       maxReferral
     );
@@ -36,7 +46,20 @@ const createTicketController = async (req, res) => {
   }
 };
 
+const getTicketController = async (req, res) => {
+  try {
+    const result = await getTicketService();
+    return res.status(200).json({
+      message: "success",
+      data: result,
+    })
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
-    getTicketTypeController,
+  getTicketTypeController,
   createTicketController,
+  getTicketController,
 };
