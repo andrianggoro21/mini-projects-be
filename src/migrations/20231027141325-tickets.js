@@ -10,10 +10,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      detailId: {
+      eventId: {
         type: Sequelize.INTEGER,
       },
-      eventId: {
+      ticketTypeId: {
+        type: Sequelize.INTEGER,
+      },
+      ticketName: {
+        type: Sequelize.STRING,
+      },
+      price: {
+        type: Sequelize.DECIMAL,
+      },
+      capacity: {
         type: Sequelize.INTEGER,
       },
       discount: {
