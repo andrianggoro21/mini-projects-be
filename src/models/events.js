@@ -36,6 +36,9 @@ module.exports = (sequelize, Sequelize) => {
       include: {
         type: Sequelize.TEXT,
       },
+      image: {
+        type: Sequelize.STRING,
+      },
     },
     {
       timestamps: false,

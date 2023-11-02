@@ -16,7 +16,8 @@ const createEventService = async (
   eventStatus,
   description,
   highlight,
-  include
+  include,
+  image,
 ) => {
   try {
     const res = await createEventQuery(
@@ -30,8 +31,9 @@ const createEventService = async (
       eventStatus,
       description,
       highlight,
-      include
-    );
+      include,
+      image,
+      );
     return res;
   } catch (err) {
     throw err;

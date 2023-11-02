@@ -31,7 +31,8 @@ const createEventController = async (req, res) => {
       eventStatus,
       description,
       highlight,
-      include
+      include,
+      req.file?.filename,
     );
     return res.status(200).json({
       message: "success",

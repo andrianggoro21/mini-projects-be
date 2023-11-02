@@ -15,7 +15,8 @@ const createEventQuery = async (
   eventStatus,
   description,
   highlight,
-  include
+  include,
+  image,
 ) => {
   try {
     const res = await events.create({
@@ -30,6 +31,7 @@ const createEventQuery = async (
       description,
       highlight,
       include,
+      image,
     });
 
     return res;

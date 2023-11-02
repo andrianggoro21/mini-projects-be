@@ -40,6 +40,7 @@ app.use("/ticket", ticketRouter);
 const userRouter = require('./routes/authRouter');
 app.use("/user", userRouter);
 
+app.use("/uploads", express.static(path.join(__dirname, "./public/images")));
 
 app.listen(PORT, (req, res) => {
     console.log(`server started on port ${PORT}`);

@@ -42,7 +42,7 @@ const getTicketQuery = async () => {
   try {
     const res = await ticket.findAll({
       include: [  
-      //   db.event,
+        db.events,
         db.tickettypes,
       ]
   });
