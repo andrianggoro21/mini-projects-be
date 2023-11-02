@@ -44,6 +44,9 @@ module.exports = {
       include: {
         type: Sequelize.TEXT,
       },
+      image: {
+        type: Sequelize.STRING,
+      },
     });
   },
 
