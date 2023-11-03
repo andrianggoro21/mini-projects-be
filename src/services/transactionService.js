@@ -2,12 +2,14 @@ const { createTransactionQuery } = require("../queries/transactionQuery");
 
 const createTransactionService = async (
   attendanceId,
-  transactionStatusId
+  transactionStatusId,
+  image,
 ) => {
   try {
     const res = await createTransactionQuery(
       attendanceId,
-      transactionStatusId
+      transactionStatusId,
+      image,
     );
     return res;
   } catch (err) {

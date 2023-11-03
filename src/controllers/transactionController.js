@@ -8,7 +8,8 @@ const createTransactionController = async (req, res) => {
     } = req.body;
     const result = await createTransactionService(
       attendanceId,
-      transactionStatusId
+      transactionStatusId,
+      req.file?.filename,
     );
     return res.status(200).json({
       message: "Success",

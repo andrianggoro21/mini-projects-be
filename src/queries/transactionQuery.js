@@ -4,12 +4,14 @@ const transaction = db.transaction;
 
 const createTransactionQuery = async (
   attendanceId,
-  transactionStatusId
+  transactionStatusId,
+  image,
 ) => {
   try {
     const res = await transaction.create({
       attendanceId,
-      transactionStatusId
+      transactionStatusId,
+      image,
     });
     return res;
   } catch (err) {

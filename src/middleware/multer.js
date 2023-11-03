@@ -22,6 +22,17 @@ const avatarStorage = multer.diskStorage({
   },
 });
 
+const paymentStorage = multer.diskStorage({
+  destination: (req, res, cb) => {
+    cb(null, path.join(__dirname, "../public/images/payment"));
+  },
+  filename: (req, file, cb) => {
+    // const { username } = req.user;
+    // cb(null, `event_${username}-${Date.now()}-${file.originalname}`);
+    cb(null, `payment_user-${Date.now()}-${file.originalname}`);
+  },
+});
+
 const fileFilter = (req, file, cb) => {
   const fileType = file.mimetype.split("/")[1];
   if (
@@ -52,7 +63,14 @@ const uploadAvatarFile = multer({
   limits,
 }).single("avatar");
 
+const uploadPaymentFile = multer({
+  storage: paymentStorage,
+  fileFilter,
+  limits,
+}).single("image");
+
 module.exports = {
   uploadEventFile,
   uploadAvatarFile,
+  uploadPaymentFile
 };
