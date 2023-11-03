@@ -16,6 +16,9 @@ module.exports = {
       transactionStatusId: {
         type: Sequelize.INTEGER,
       },
+      image: {
+        type: Sequelize.STRING,
+      },
     });
   },
 

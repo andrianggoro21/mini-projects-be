@@ -8,6 +8,9 @@ module.exports = (sequelize, Sequelize) => {
       transactionStatusId: {
         type: Sequelize.INTEGER,
       },
+      image: {
+        type: Sequelize.STRING,
+      },
     },
     {
       timestamps: false,

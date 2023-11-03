@@ -2,9 +2,6 @@ module.exports = (sequelize, Sequelize) => {
     const attendance = sequelize.define(
       "attendance",
       {
-        ticketId: {
-          type: Sequelize.INTEGER,
-        },
         userId: {
           type: Sequelize.INTEGER,
         },
@@ -19,13 +16,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         referralCode: {
           type: Sequelize.STRING,
-        },
-        ticketTotal: {
-          type: Sequelize.INTEGER,
-        },
-        priceTotal: {
-          type: Sequelize.DECIMAL,
-        },
+        }
       },
       {
         timestamps: false,
@@ -34,6 +25,7 @@ module.exports = (sequelize, Sequelize) => {
     );
   
     attendance.associate = (models) => {
+      attendance.hasMany(models.attendanceDetail, { foreignKey: "attendanceId" });
       attendance.hasOne(models.transaction, { foreignKey: "attendanceId" });
     };
   

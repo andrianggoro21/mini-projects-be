@@ -15,7 +15,8 @@ const createTransactionController = async (req, res) => {
       data: result,
     });
   } catch (err) {
-    throw err;
+    console.log(err);
+    return res.status(500).send(err.message);
   }
 };
 
