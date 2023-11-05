@@ -33,7 +33,7 @@ const createEventQuery = async (
       include,
       image,
     });
-
+    console.log(res);
     return res;
   } catch (err) {
     throw err;
@@ -87,9 +87,25 @@ const getEventQuery = async () => {
   }
 };
 
+const getEventQueryId = async (id) => {
+  try {
+    const res = await events.findOne({
+      include: [db.eventlocation, db.eventcategory, db.tickets],
+      where: {
+        id,
+      }
+    });
+    return res
+  } catch (err) {
+    throw err
+    
+  }
+}
+
 module.exports = {
   createEventQuery,
   getCategoryQuery,
   getLocationQuery,
   getEventQuery,
+  getEventQueryId
 };

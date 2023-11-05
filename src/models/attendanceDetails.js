@@ -23,6 +23,7 @@ module.exports = (sequelize, Sequelize) => {
   
     attendanceDetail.associate = (models) => {
       attendanceDetail.belongsTo(models.attendance, { foreignKey: "attendanceId" });
+      attendanceDetail.belongsTo(models.tickets, { foreignKey: "ticketId" });
     };
   
     return attendanceDetail;

@@ -1,7 +1,8 @@
 const {
   createAttendanceQuery,
-  getAttendanceQueryAll,
+  getAttendanceQueryId,
   createAttendanceDetailQuery,
+  getAttendanceDetailQueryId,
 } = require("../queries/attendanceQuery");
 
 const createAttendanceService = async (
@@ -34,9 +35,18 @@ const createAttendanceDetailService = async (attendanceId, ticketId, ticketTotal
   }
 } 
 
-const getAttendanceServiceAll = async () => {
+const getAttendanceServiceId = async (id) => {
   try {
-    const res = await getAttendanceQueryAll();
+    const res = await getAttendanceQueryId(id);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const getAttendanceDetailServiceId = async (attendanceId) => {
+  try {
+    const res = await getAttendanceDetailQueryId(attendanceId);
     return res;
   } catch (err) {
     throw err;
@@ -46,5 +56,6 @@ const getAttendanceServiceAll = async () => {
 module.exports = {
   createAttendanceService,
   createAttendanceDetailService,
-  getAttendanceServiceAll,
+  getAttendanceServiceId,
+  getAttendanceDetailServiceId
 };

@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { createAttendanceController, getAttendanceControllerAll, createAttendanceDetailController } = require("../controllers/attendanceController");
+const { createAttendanceController, getAttendanceControllerId, createAttendanceDetailController, getAttendanceDetailControllerId } = require("../controllers/attendanceController");
 
 router.post("/", createAttendanceController);
-router.get("/", getAttendanceControllerAll);
+router.get("/:id", getAttendanceControllerId);
 router.post("/detail", createAttendanceDetailController);
+router.get("/detail/:attendanceId", getAttendanceDetailControllerId);
 
 module.exports = router;

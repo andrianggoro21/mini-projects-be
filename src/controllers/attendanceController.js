@@ -1,7 +1,8 @@
 const {
   createAttendanceService,
-  getAttendanceServiceAll,
+  getAttendanceServiceId,
   createAttendanceDetailService,
+  getAttendanceDetailServiceId,
 } = require("../services/attendanceService");
 
 const createAttendanceController = async (req, res) => {
@@ -49,9 +50,24 @@ const createAttendanceDetailController = async (req, res) => {
   }
 };
 
-const getAttendanceControllerAll = async (req, res) => {
+const getAttendanceControllerId = async (req, res) => {
   try {
-    const result = await getAttendanceServiceAll();
+    const { id } = req.params
+    const result = await getAttendanceServiceId(id);
+    return res.status(200).json({
+      message: "Success",
+      data: result,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(err.message);
+  }
+};
+
+const getAttendanceDetailControllerId = async (req, res) => {
+  try {
+    const { attendanceId } = req.params
+    const result = await getAttendanceDetailServiceId(attendanceId);
     return res.status(200).json({
       message: "Success",
       data: result,
@@ -65,5 +81,6 @@ const getAttendanceControllerAll = async (req, res) => {
 module.exports = {
   createAttendanceController,
   createAttendanceDetailController,
-  getAttendanceControllerAll,
+  getAttendanceControllerId,
+  getAttendanceDetailControllerId
 };

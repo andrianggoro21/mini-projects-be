@@ -8,7 +8,7 @@ const createAttendanceQuery = async (
   fullName,
   email,
   phoneNumber,
-  referralCode,
+  referralCode
 ) => {
   try {
     const res = await attendance.create({
@@ -43,17 +43,39 @@ const createAttendanceDetailQuery = async (
   }
 };
 
-const getAttendanceQueryAll = async () => {
+const getAttendanceQueryId = async (id) => {
   try {
-    const res = await attendance.findAll({ include: attendanceDetail });
+    const res = await attendance.findOne({
+      include: attendanceDetail,
+      where: {
+        id,
+      },
+    });
     return res;
   } catch (err) {
     throw err;
   }
 };
 
+const getAttendanceDetailQueryId = async (attendanceId) => {
+  try {
+    const res = await attendanceDetail.findAll({
+      include: db.tickets,
+      where: {
+        attendanceId,
+      },
+    });
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
+
+
 module.exports = {
   createAttendanceQuery,
   createAttendanceDetailQuery,
-  getAttendanceQueryAll,
+  getAttendanceQueryId,
+  getAttendanceDetailQueryId
 };

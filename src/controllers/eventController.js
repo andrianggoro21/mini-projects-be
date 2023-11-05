@@ -3,6 +3,7 @@ const {
   getCategoryService,
   getLocationService,
   getEventService,
+  getEventServiceId,
 } = require("../services/eventService");
 
 const createEventController = async (req, res) => {
@@ -80,9 +81,24 @@ const getEventController = async (req, res) => {
   }
 };
 
+const getEventControllerId = async (req, res) => {
+  try {
+    const { id } = req.params
+    const result = await getEventServiceId(id)
+    return res.status(200).json({
+      message: "success",
+      data: result
+    })
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(err.message);
+  }
+}
+
 module.exports = {
   createEventController,
   getCategoryController,
   getLocationController,
   getEventController,
+  getEventControllerId
 };
