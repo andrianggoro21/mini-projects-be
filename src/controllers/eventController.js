@@ -4,6 +4,7 @@ const {
   getLocationService,
   getEventService,
   getEventServiceId,
+  getCarouselService,
 } = require("../services/eventService");
 
 const createEventController = async (req, res) => {
@@ -94,11 +95,23 @@ const getEventControllerId = async (req, res) => {
     return res.status(500).send(err.message);
   }
 }
+const getCarouselController = async (req, res) => {
+  try {
+    const result = await getCarouselService();
+    return res.status(200).json({
+      message: "success",
+      data: result,
+    });
+  } catch (err) {
+    throw err;
+  }
+};
 
 module.exports = {
   createEventController,
   getCategoryController,
   getLocationController,
   getEventController,
-  getEventControllerId
+  getEventControllerId,
+  getCarouselController
 };

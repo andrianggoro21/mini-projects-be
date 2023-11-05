@@ -1,5 +1,5 @@
 const db = require("../models");
-// const { Op } = require("sequelize");
+const { Op, Sequelize } = require("sequelize");
 const category = db.eventcategory;
 const location = db.eventlocation;
 const events = db.events;
@@ -101,11 +101,39 @@ const getEventQueryId = async (id) => {
     
   }
 }
+const getCarouselQuery = async () => {
+  try {
+    // const filter = {};
+    // if (eventName) filter.where = {
+    //     eventName: {
+    //         [Op.like]: `%${eventName}%`
+    //     }
+    // }
+
+    const res = await events.findAll(
+      {
+        attributes: ['id', 'image', 'eventStatus'],
+        where: {
+          [Op.and]: [
+            {eventStatus: true}
+          ]
+        },
+        order: Sequelize.literal('rand()'),
+        limit: 5,
+      }
+    );
+ 
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
 
 module.exports = {
   createEventQuery,
   getCategoryQuery,
   getLocationQuery,
   getEventQuery,
-  getEventQueryId
+  getEventQueryId,
+  getCarouselQuery,
 };
