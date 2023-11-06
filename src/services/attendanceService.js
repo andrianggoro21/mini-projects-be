@@ -3,6 +3,7 @@ const {
   getAttendanceQueryId,
   createAttendanceDetailQuery,
   getAttendanceDetailQueryId,
+  getReferralCodeQuery,
 } = require("../queries/attendanceQuery");
 
 const createAttendanceService = async (
@@ -53,9 +54,19 @@ const getAttendanceDetailServiceId = async (attendanceId) => {
   }
 };
 
+const getReferralCodeService = async (referralCode) => {
+  try {
+    const res = await getReferralCodeQuery(referralCode);
+    return res;
+  } catch (err) {
+    throw err
+  }
+}
+
 module.exports = {
   createAttendanceService,
   createAttendanceDetailService,
   getAttendanceServiceId,
-  getAttendanceDetailServiceId
+  getAttendanceDetailServiceId,
+  getReferralCodeService
 };

@@ -71,11 +71,27 @@ const getAttendanceDetailQueryId = async (attendanceId) => {
   }
 };
 
+const getReferralCodeQuery = async (referralCode) => {
+  try {
+    
+    const res = await attendance.findOne({
+      where: {
+        referralCode
+      }
+    })
+    console.log(res);
+    return res;
+  } catch (err) {
+    throw err
+  }
+}
+
 
 
 module.exports = {
   createAttendanceQuery,
   createAttendanceDetailQuery,
   getAttendanceQueryId,
-  getAttendanceDetailQueryId
+  getAttendanceDetailQueryId, 
+  getReferralCodeQuery,
 };

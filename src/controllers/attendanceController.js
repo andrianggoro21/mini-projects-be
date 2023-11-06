@@ -3,6 +3,7 @@ const {
   getAttendanceServiceId,
   createAttendanceDetailService,
   getAttendanceDetailServiceId,
+  getReferralCodeService,
 } = require("../services/attendanceService");
 
 const createAttendanceController = async (req, res) => {
@@ -78,9 +79,25 @@ const getAttendanceDetailControllerId = async (req, res) => {
   }
 };
 
+const getReferralCodeController = async (req, res) => {
+  try {
+    const { referralCode } = req.params
+    console.log(referralCode);
+    const result = await getReferralCodeService(referralCode)
+    return res.status(200).json({
+      message: "success",
+      data: result
+    })
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(err.message);
+  }
+}
+
 module.exports = {
   createAttendanceController,
   createAttendanceDetailController,
   getAttendanceControllerId,
-  getAttendanceDetailControllerId
+  getAttendanceDetailControllerId,
+  getReferralCodeController
 };
