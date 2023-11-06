@@ -122,7 +122,7 @@ const getCarouselQuery = async () => {
         limit: 5,
       }
     );
- 
+      console.log(res);
     return res;
   } catch (err) {
     throw err;
