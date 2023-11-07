@@ -17,6 +17,9 @@ module.exports = (sequelize, Sequelize) => {
          roleId: {
             type: Sequelize.INTEGER,
          },
+         avatar: {
+            type: Sequelize.STRING,
+         },
         },
         {
             timestamps: false,

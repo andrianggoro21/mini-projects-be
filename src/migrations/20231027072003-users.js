@@ -28,6 +28,9 @@ module.exports = {
       point: {
         type: Sequelize.DECIMAL,
       },
+      avatar: {
+        type: Sequelize.STRING,
+     },
     });
   },
 
