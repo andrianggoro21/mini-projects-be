@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { keepLoginQuery, registerQuery } = require("../queries/authQuery");
+const { keepLoginQuery, registerQuery, updateAvatarQuery } = require("../queries/authQuery");
 const { findUserQuery } = require("../queries/userQuery");
 const { transporter } = require("../utils/nodemailer");
 const { template } = require("handlebars");
@@ -77,8 +77,19 @@ const keepLoginService = async (id) => {
     }
 };
 
+const updateAvatarService = async (id, avatar) => {
+    try {
+       const result = await updateAvatarQuery (id, avatar);
+       
+      return result
+   
+   }  catch (err) {
+    throw err
+}}
+
 module.exports = {
     registerService,
     loginService,
     keepLoginService,
+    updateAvatarService,
 };

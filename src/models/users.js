@@ -20,6 +20,9 @@ module.exports = (sequelize, Sequelize) => {
          point: {
             type: Sequelize.DECIMAL,
           },
+         avatar: {
+            type: Sequelize.STRING,
+         },
         },
         {
             timestamps: false,

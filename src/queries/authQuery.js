@@ -46,9 +46,28 @@ const keepLoginQuery = async (id) => {
     }
 };
 
+const updateAvatarQuery = async (id, avatar) => {
+    try {
+        const res = await db.sequelize.transaction(async (t) => {
+            await user.update(
+                avatar,{
+                    where:{
+                        id,
+                    } 
+                }
+            )
+                
+        })
+        return res;
+    } catch (err) {
+        throw err;
+    }
+}
+
 
 module.exports = {
     registerQuery,
     loginQuery,
     keepLoginQuery,
+    updateAvatarQuery,
 }
