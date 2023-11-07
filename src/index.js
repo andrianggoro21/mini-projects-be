@@ -28,6 +28,9 @@ app.use(
 const eventRouter = require('./routes/eventRouter');
 app.use("/event", eventRouter);
 
+const filterRouter = require('./routes/filterRouter');
+app.use("/filter", filterRouter);
+
 const attendanceRouter = require('./routes/attendanceRouter');
 app.use("/attendance", attendanceRouter);
 
