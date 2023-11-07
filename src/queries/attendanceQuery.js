@@ -1,14 +1,16 @@
 const db = require("../models");
-// const { Op } = require("sequelize");
+const { Op, Sequelize} = require("sequelize");
 const attendance = db.attendance;
 const attendanceDetail = db.attendanceDetail;
+const ticket = db.tickets;
 
 const createAttendanceQuery = async (
   userId,
   fullName,
   email,
   phoneNumber,
-  referralCode
+  referralCode,
+  pricePaid
 ) => {
   try {
     const res = await attendance.create({
@@ -17,6 +19,7 @@ const createAttendanceQuery = async (
       email,
       phoneNumber,
       referralCode,
+      pricePaid
     });
     return res;
   } catch (err) {
@@ -28,7 +31,7 @@ const createAttendanceDetailQuery = async (
   attendanceId,
   ticketId,
   ticketTotal,
-  priceTotal
+  priceTotal, 
 ) => {
   try {
     const res = await attendanceDetail.create({
@@ -71,6 +74,22 @@ const getAttendanceDetailQueryId = async (attendanceId) => {
   }
 };
 
+const updateCapacityTicket = async (ticketId, ticketTotal) => {
+  try {
+    const res = await ticket.update({capacity: Sequelize.literal(`capacity - ${ticketTotal}`)},
+    {where: {
+      id: ticketId,
+      capacity: {
+        [Sequelize.Op.gt]: 0
+      }
+    }},
+    )
+    return res;
+  } catch (err) {
+    throw err
+  }
+}
+
 const getReferralCodeQuery = async (referralCode) => {
   try {
     
@@ -94,4 +113,5 @@ module.exports = {
   getAttendanceQueryId,
   getAttendanceDetailQueryId, 
   getReferralCodeQuery,
+  updateCapacityTicket
 };

@@ -14,6 +14,7 @@ const createAttendanceController = async (req, res) => {
       email,
       phoneNumber,
       referralCode,
+      pricePaid
     } = req.body;
     const result = await createAttendanceService(
       userId,
@@ -21,6 +22,7 @@ const createAttendanceController = async (req, res) => {
       email,
       phoneNumber,
       referralCode,
+      pricePaid
     );
     return res.status(200).json({
       message: "Success",
@@ -34,12 +36,13 @@ const createAttendanceController = async (req, res) => {
 
 const createAttendanceDetailController = async (req, res) => {
   try {
-    const { attendanceId, ticketId, ticketTotal, priceTotal } = req.body;
+    const { attendanceId, ticketId, ticketTotal, priceTotal} = req.body;
     const result = await createAttendanceDetailService(
       attendanceId,
       ticketId,
       ticketTotal,
-      priceTotal
+      priceTotal,
+      
     );
     return res.status(200).json({
       message: "Success",

@@ -1,4 +1,4 @@
-const { createTransactionQuery } = require("../queries/transactionQuery");
+const { createTransactionQuery, createTicketCodeQuery } = require("../queries/transactionQuery");
 
 const createTransactionService = async (
   attendanceId,
@@ -17,6 +17,17 @@ const createTransactionService = async (
   }
 };
 
+const createTicketCodeService = async (transactionId, ticketCode) => {
+  try {
+
+    const res = await createTicketCodeQuery(transactionId, ticketCode)
+    return res;
+  } catch (err) {
+    throw err
+  }
+}
+
 module.exports = {
   createTransactionService,
+  createTicketCodeService
 };

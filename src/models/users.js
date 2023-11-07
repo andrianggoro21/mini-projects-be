@@ -17,6 +17,9 @@ module.exports = (sequelize, Sequelize) => {
          roleId: {
             type: Sequelize.INTEGER,
          },
+         point: {
+            type: Sequelize.DECIMAL,
+          },
         },
         {
             timestamps: false,

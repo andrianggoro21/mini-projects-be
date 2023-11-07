@@ -4,6 +4,7 @@ const {
   createAttendanceDetailQuery,
   getAttendanceDetailQueryId,
   getReferralCodeQuery,
+  updateCapacityTicket,
 } = require("../queries/attendanceQuery");
 
 const createAttendanceService = async (
@@ -12,6 +13,7 @@ const createAttendanceService = async (
   email,
   phoneNumber,
   referralCode,
+  pricePaid
 ) => {
   try {
     const res = await createAttendanceQuery(
@@ -20,6 +22,7 @@ const createAttendanceService = async (
       email,
       phoneNumber,
       referralCode,
+      pricePaid
     );
     return res;
   } catch (err) {
@@ -63,10 +66,23 @@ const getReferralCodeService = async (referralCode) => {
   }
 }
 
+const updateTicketCapacityService = async (attendanceId) => {
+  try {
+    const res = await getAttendanceDetailQueryId(attendanceId)
+    for (let i = 0; i < res.length; i++) {
+      console.log(res[i].capacity)
+      const x = await updateCapacityTicket(res[i].ticketId, res[i].ticketTotal)
+      
+    }
+  } catch (err) {
+    throw err
+  }
+}
 module.exports = {
   createAttendanceService,
   createAttendanceDetailService,
   getAttendanceServiceId,
   getAttendanceDetailServiceId,
-  getReferralCodeService
+  getReferralCodeService,
+  updateTicketCapacityService
 };

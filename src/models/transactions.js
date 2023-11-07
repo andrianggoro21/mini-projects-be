@@ -20,6 +20,7 @@ module.exports = (sequelize, Sequelize) => {
 
   transaction.associate = (models) => {
     transaction.belongsTo(models.attendance, { foreignKey: "attendanceId" });
+    transaction.hasMany(models.ticketCode, {foreignKey: "transactionId"})
   };
 
   return transaction;

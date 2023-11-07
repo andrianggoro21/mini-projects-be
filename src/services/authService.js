@@ -6,7 +6,7 @@ const { transporter } = require("../utils/nodemailer");
 const { template } = require("handlebars");
 
 
-const registerService = async (fullname, email, password, roleId) => {
+const registerService = async (fullname, email, password, roleId, point) => {
     try {
         const check  = await findUserQuery({fullname, email});
 
@@ -16,7 +16,7 @@ const registerService = async (fullname, email, password, roleId) => {
 
         const hashPassword = await bcrypt.hash(password, salt);
 
-        const res = await registerQuery(fullname, email, hashPassword, roleId);
+        const res = await registerQuery(fullname, email, hashPassword, roleId, point);
 
         // const temp = await FileSystem.readFileSync(
         //     path.join(__dirname, "../template", "registration-template.html"),
