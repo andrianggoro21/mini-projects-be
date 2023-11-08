@@ -17,8 +17,8 @@ const avatarStorage = multer.diskStorage({
     cb(null, path.join(__dirname, "../public/images/avatar"));
   },
   filename: (req, file, cb) => {
-    const { username } = req.body;
-    cb(null, `avatar_${username}-${Date.now()}-${file.originalname}`);
+    // const { username } = req.body;
+    cb(null, `avatar_${Date.now()}-${file.originalname}`);
   },
 });
 

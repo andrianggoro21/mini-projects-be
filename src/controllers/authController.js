@@ -48,14 +48,16 @@ const keepLoginController = async (req, res) => {
 const updateAvatarController = async (req, res) => {
  try {
     const { id } = req.params;
-    const result = await updateAvatarService (id,req.file?.filename);
+    const result = await updateAvatarService(id, req.file?.filename);
+
+    // await updateAvatarService(id);
     
     return res.status(200).json({
         message: "Successfully",
         data: result,
  })
 } catch (err) {
-    return res.status(500).send("err.message");
+    return res.status(500).send(err.message);
 }
 }
 

@@ -11,7 +11,7 @@ const {uploadAvatarFile} = require("../middleware/multer")
 router.post("/login", loginController);
 router.post("/register", registerController);
 router.get("/keep-login", verifyToken, keepLoginController);
-router.patch("/update-avatar", uploadAvatarFile, updateAvatarController);
+router.patch("/update-avatar/:id", uploadAvatarFile, updateAvatarController);
 // router.patch("/register", validator([param("id").isInt()]), registerController)
 
 module.exports = router;

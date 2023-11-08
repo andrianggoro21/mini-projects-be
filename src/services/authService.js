@@ -79,8 +79,7 @@ const keepLoginService = async (id) => {
 
 const updateAvatarService = async (id, avatar) => {
     try {
-       const result = await updateAvatarQuery (id, avatar);
-       
+       const result = await updateAvatarQuery(id, avatar);
       return result
    
    }  catch (err) {
